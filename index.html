@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang="vi"><head><title>Lumière Flower</title><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/responsive.css"></head><body><div id="hdr"></div>
+<section class="slider hero" id="slider"></section>
+<div class="wrap"><div class="cats" id="cats"></div>
+<h2>Sản phẩm nổi bật</h2><div class="grid" id="featured"></div>
+<div class="about" id="about" style="margin-top:40px"><div class="pic">💐</div><div><h2 style="margin-top:0">Lumière Flower</h2><p>Chúng tôi tin rằng mỗi bó hoa đều mang một câu chuyện, một cảm xúc và một thông điệp riêng.</p><br><a class="btn sm" href="products.html">Tìm hiểu thêm →</a></div></div>
+<h2>Sản phẩm mới</h2><div class="grid" id="newest"></div></div><div id="ftr"></div><script src="js/data.js"></script><script src="js/main.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+ const P=getProducts(),icons=["❤️","🎂","💍","🎉","✨","🌿"];
+ document.getElementById("cats").innerHTML=CATEGORIES.map((c,i)=>'<a class="cat" href="products.html?cat='+encodeURIComponent(c)+'"><span>'+icons[i]+'</span>'+c+'</a>').join("");
+ document.getElementById("featured").innerHTML=P.filter(p=>p.isFeatured).slice(0,4).map(card).join("");
+ document.getElementById("newest").innerHTML=P.filter(p=>p.isNew).slice(0,4).map(card).join("");
+ // Hero slider
+ const S=[["Gửi một đóa hoa<br>trao một điều<br>thương nhớ.","💐"],["Hoa tươi mỗi ngày<br>giao tận tay<br>người thương.","🌹"],["Khoảnh khắc đặc biệt<br>xứng đáng một<br>bó hoa đẹp.","🌸"]];
+ const el=document.getElementById("slider");let cur=0,timer;
+ el.innerHTML=S.map(s=>'<div class="slide"><div><h1>'+s[0]+'</h1><p style="margin-bottom:18px;color:var(--dusty)">Lumière Flower</p><a class="btn" href="products.html">Khám phá ngay →</a></div><div class="art">'+s[1]+'</div></div>').join("")+'<button class="arrow l">‹</button><button class="arrow r">›</button><div class="dots">'+S.map(()=>"<i></i>").join("")+'</div>';
+ const slides=el.querySelectorAll(".slide"),dots=el.querySelectorAll(".dots i");
+ function go(n){cur=(n+S.length)%S.length;slides.forEach((s,i)=>s.classList.toggle("on",i===cur));dots.forEach((d,i)=>d.classList.toggle("on",i===cur));}
+ el.querySelector(".l").onclick=()=>go(cur-1);el.querySelector(".r").onclick=()=>go(cur+1);
+ dots.forEach((d,i)=>d.onclick=()=>go(i));go(0);setInterval(()=>go(cur+1),5000);
+});</script></body></html>

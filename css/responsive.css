@@ -1,0 +1,4 @@
+@media(max-width:1199px){.grid{grid-template-columns:repeat(3,1fr)}.menu{display:none;position:absolute;top:70px;left:0;right:0;background:#fff;flex-direction:column;padding:16px 24px;gap:12px}.menu.open{display:flex}.burger{display:block}}
+@media(max-width:767px){.grid{grid-template-columns:repeat(2,1fr);gap:12px}.slide{grid-template-columns:1fr;padding:20px;text-align:center}.slide .art{font-size:90px}.hero h1{font-size:26px}
+.about,.detail,.cols,.layout,.fgrid{grid-template-columns:1fr}aside{display:none}aside.open{display:block}#filterBtn{display:inline-block}
+.crow{grid-template-columns:60px 1fr 1fr}.svc{grid-template-columns:1fr}}
