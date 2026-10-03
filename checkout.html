@@ -1,6 +1,43 @@
-<!DOCTYPE html><html lang="vi"><head><title>Thanh toán - Lumière Flower</title><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/responsive.css"></head><body><div id="hdr"></div>
-<div class="wrap" id="co"><h2>Thanh toán</h2><div class="cols"><form id="f" name="f" class="box"><input class="fld" name="name" placeholder="Họ tên" required><input class="fld" name="phone" placeholder="Số điện thoại" required pattern="[0-9]{9,11}"><input class="fld" name="email" type="email" placeholder="Email" required><input class="fld" name="address" placeholder="Địa chỉ" required><textarea class="fld" name="note" placeholder="Ghi chú"></textarea>
-<h4>Giao hàng</h4><label><input type="radio" name="ship" value="std" checked> Tiêu chuẩn</label> <label><input type="radio" name="ship" value="fast"> Nhanh (+30.000đ)</label>
-<h4>Thanh toán</h4><label><input type="radio" name="pay" value="Thanh toán khi nhận hàng" checked> Khi nhận hàng</label> <label><input type="radio" name="pay" value="Chuyển khoản"> Chuyển khoản</label><br><br><button class="btn">Đặt hàng</button></form>
-<div class="box" id="os"></div></div></div>
-<div class="modal" id="modal"><div><h2>Đặt hàng thành công 🌷</h2><p>Mã đơn hàng: <b id="modalCode"></b></p><br><a class="btn" href="index.html">Về trang chủ</a></div></div><div id="ftr"></div><script src="js/data.js"></script><script src="js/main.js"></script><script src="js/cart.js"></script><script src="js/checkout.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <title>Thanh toán - Lumière Flower</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <div id="hdr"></div>
+    <div class="wrap" id="co">
+        <h2>Thanh toán</h2>
+        <div class="cols">
+            <form id="f" name="f" class="box"><input class="fld" name="name" placeholder="Họ tên" required><input
+                    class="fld" name="phone" placeholder="Số điện thoại" required pattern="[0-9]{9,11}"><input
+                    class="fld" name="email" type="email" placeholder="Email" required><input class="fld" name="address"
+                    placeholder="Địa chỉ" required><textarea class="fld" name="note" placeholder="Ghi chú"></textarea>
+                <h4>Giao hàng</h4><label><input type="radio" name="ship" value="std" checked> Tiêu chuẩn</label>
+                <label><input type="radio" name="ship" value="fast"> Nhanh (+30.000đ)</label>
+                <h4>Thanh toán</h4><label><input type="radio" name="pay" value="Thanh toán khi nhận hàng" checked> Khi
+                    nhận hàng</label> <label><input type="radio" name="pay" value="Chuyển khoản"> Chuyển
+                    khoản</label><br><br><button class="btn">Đặt hàng</button>
+            </form>
+            <div class="box" id="os"></div>
+        </div>
+    </div>
+    <div class="modal" id="modal">
+        <div>
+            <h2>Đặt hàng thành công 🌷</h2>
+            <p>Mã đơn hàng: <b id="modalCode"></b></p><br><a class="btn" href="index.html">Về trang chủ</a>
+        </div>
+    </div>
+    <div id="ftr"></div>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/checkout.js"></script>
+</body>
+
+</html>

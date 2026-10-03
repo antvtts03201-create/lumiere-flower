@@ -81,16 +81,19 @@ for (let i = 0; i < ROWS.length; i++) {
 }
 
 // ----- Hàm lưu trữ localStorage -----
-
-// Đọc dữ liệu từ localStorage. Nếu chưa có thì trả về giá trị mặc định.
+// Đọc dữ liệu từ localStorage. Nếu chưa có hoặc dữ liệu bị lỗi thì trả về giá trị mặc định.
 function load(key, defaultValue) {
     const text = localStorage.getItem(key);
     if (text === null) {
         return defaultValue;
     }
-    return JSON.parse(text);
-}
 
+    try {
+        return JSON.parse(text);
+    } catch (error) {
+        return defaultValue;
+    }
+}
 // Lưu dữ liệu vào localStorage (chuyển thành chuỗi bằng JSON.stringify)
 function save(key, value) {
     localStorage.setItem(key, JSON.stringify(value));

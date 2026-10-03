@@ -2,294 +2,183 @@
 <html lang="vi">
 
 <head>
-    <title>Lumière Flower</title>
+  <title>Lumière Flower</title>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body>
 
-    <div id="hdr"></div>
+  <div id="hdr"></div>
 
-    <!-- BANNER -->
-    <section class="slider hero" id="slider"></section>
+  <section class="slider hero" id="slider"></section>
 
+  <div class="wrap">
 
-    <div class="wrap">
+    <div class="cats" id="cats"></div>
 
-        <!-- DANH MỤC -->
-        <div class="cats" id="cats"></div>
+    <h2>Sản phẩm nổi bật</h2>
 
+    <div class="grid" id="featured"></div>
 
-        <!-- SẢN PHẨM NỔI BẬT -->
-        <h2>Sản phẩm nổi bật</h2>
+    <div class="about" id="about" style="margin-top:40px">
 
-        <div class="grid" id="featured"></div>
+      <div class="pic">💐</div>
 
+      <div>
+        <h2 style="margin-top:0">Lumière Flower</h2>
 
-        <!-- GIỚI THIỆU -->
-        <div class="about" id="about" style="margin-top:40px">
+        <p>
+          Chúng tôi tin rằng mỗi bó hoa đều mang một câu chuyện,
+          một cảm xúc và một thông điệp riêng.
+        </p>
 
-            <div class="pic">
-                💐
-            </div>
+        <br>
 
-            <div>
-
-                <h2 style="margin-top:0">
-                    Lumière Flower
-                </h2>
-
-                <p>
-                    Chúng tôi tin rằng mỗi bó hoa đều mang một câu chuyện,
-                    một cảm xúc và một thông điệp riêng.
-                </p>
-
-                <br>
-
-                <a class="btn sm" href="products.html">
-                    Tìm hiểu thêm →
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- SẢN PHẨM MỚI -->
-        <h2>Sản phẩm mới</h2>
-
-        <div class="grid" id="newest"></div>
+        <a class="btn sm" href="products.html">
+          Tìm hiểu thêm →
+        </a>
+      </div>
 
     </div>
 
+    <h2>Sản phẩm mới</h2>
 
-    <div id="ftr"></div>
+    <div class="grid" id="newest"></div>
 
+  </div>
 
-    <script src="js/data.js"></script>
-    <script src="js/main.js"></script>
+  <div id="ftr"></div>
 
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
 
-    <script>
+  <script>
 
-        document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", () => {
 
-            const P = getProducts();
+      const P = getProducts();
 
+      const slugs = [
+        "hoa-tinh-yeu",
+        "hoa-sinh-nhat",
+        "hoa-cuoi",
+        "hoa-chuc-mung",
+        "hoa-dip-dac-biet",
+        "hoa-theo-mua"
+      ];
 
-            /* =========================
-               DANH MỤC
-            ========================= */
+      document.getElementById("cats").innerHTML = CATEGORIES.map((c, i) =>
+        `
+        <a class="cat" href="products.html?cat=${encodeURIComponent(c)}">
 
-            const slugs = [
-                "hoa-tinh-yeu",
-                "hoa-sinh-nhat",
-                "hoa-cuoi",
-                "hoa-chuc-mung",
-                "hoa-dip-dac-biet",
-                "hoa-theo-mua"
-            ];
+          <span class="cat-img">
+            <img
+              src="assets/images/${slugs[i]}.jpg"
+              alt="${c}"
+              loading="lazy"
+            >
+          </span>
 
-            document.getElementById("cats").innerHTML =
-                CATEGORIES.map((c, i) => `
+          ${c}
 
-                    <a class="cat"
-                       href="products.html?cat=${encodeURIComponent(c)}">
+        </a>
+        `
+      ).join("");
 
-                        <span class="cat-img">
 
-                            <img
-                                src="assets/images/${slugs[i]}.jpg"
-                                alt="${c}"
-                                loading="lazy"
-                            >
+      document.getElementById("featured").innerHTML =
+        P
+          .filter(p => p.isFeatured)
+          .slice(0, 4)
+          .map(card)
+          .join("");
 
-                        </span>
 
-                        ${c}
+      document.getElementById("newest").innerHTML =
+        P
+          .filter(p => p.isNew)
+          .slice(0, 4)
+          .map(card)
+          .join("");
 
-                    </a>
 
-                `).join("");
+      const banners = [
+        "assets/images/lumiere_banner_1.png",
+        "assets/images/lumiere_banner_2.png",
+        "assets/images/lumiere_banner_3.png"
+      ];
 
 
-            /* =========================
-               SẢN PHẨM NỔI BẬT
-            ========================= */
+      const slider = document.getElementById("slider");
 
-            document.getElementById("featured").innerHTML =
-                P
-                    .filter(p => p.isFeatured)
-                    .slice(0, 4)
-                    .map(card)
-                    .join("");
+      let current = 0;
 
 
-            /* =========================
-               SẢN PHẨM MỚI
-            ========================= */
+      slider.innerHTML = `
+        <div class="banner">
+          <img id="bannerImage" src="${banners[0]}" alt="">
+        </div>
 
-            document.getElementById("newest").innerHTML =
-                P
-                    .filter(p => p.isNew)
-                    .slice(0, 4)
-                    .map(card)
-                    .join("");
+        <button class="arrow l">‹</button>
 
+        <button class="arrow r">›</button>
 
-            /* =========================
-               BANNER
-            ========================= */
+        <div class="dots">
+          ${banners.map(() => "<i></i>").join("")}
+        </div>
+      `;
 
-            const banners = [
-                "assets/images/lumiere_banner_1.png",
-                "assets/images/lumiere_banner_2.png",
-                "assets/images/lumiere_banner_3.png"
-            ];
 
+      const bannerImage = document.getElementById("bannerImage");
 
-            const slider = document.getElementById("slider");
+      const dots = slider.querySelectorAll(".dots i");
 
-            let current = 0;
 
+      function showBanner(number) {
 
-            /* Tạo 3 banner */
+        current = (number + banners.length) % banners.length;
 
-            slider.innerHTML = `
+        bannerImage.src = banners[current];
 
-                ${banners.map((image, index) => `
-
-                    <div class="slide">
-
-                        <img
-                            src="${image}"
-                            alt="Lumière Flower Banner ${index + 1}"
-                        >
-
-                    </div>
-
-                `).join("")}
-
-
-                <button class="arrow l" type="button">
-                    ‹
-                </button>
-
-
-                <button class="arrow r" type="button">
-                    ›
-                </button>
-
-
-                <div class="dots">
-
-                    ${banners.map(() => `
-                        <i></i>
-                    `).join("")}
-
-                </div>
-
-            `;
-
-
-            const slides =
-                slider.querySelectorAll(".slide");
-
-            const dots =
-                slider.querySelectorAll(".dots i");
-
-
-            /* =========================
-               CHUYỂN SLIDE
-            ========================= */
-
-            function showSlide(number) {
-
-                current =
-                    (number + banners.length)
-                    % banners.length;
-
-
-                slides.forEach((slide, index) => {
-
-                    if (index === current) {
-                        slide.classList.add("on");
-                    } else {
-                        slide.classList.remove("on");
-                    }
-
-                });
-
-
-                dots.forEach((dot, index) => {
-
-                    if (index === current) {
-                        dot.classList.add("on");
-                    } else {
-                        dot.classList.remove("on");
-                    }
-
-                });
-
-            }
-
-
-            /* NÚT TRÁI */
-
-            slider
-                .querySelector(".l")
-                .onclick = () => {
-
-                    showSlide(current - 1);
-
-                };
-
-
-            /* NÚT PHẢI */
-
-            slider
-                .querySelector(".r")
-                .onclick = () => {
-
-                    showSlide(current + 1);
-
-                };
-
-
-            /* CHẤM */
-
-            dots.forEach((dot, index) => {
-
-                dot.onclick = () => {
-
-                    showSlide(index);
-
-                };
-
-            });
-
-
-            /* HIỂN THỊ BANNER ĐẦU */
-
-            showSlide(0);
-
-
-            /* TỰ ĐỘNG CHUYỂN */
-
-            setInterval(() => {
-
-                showSlide(current + 1);
-
-            }, 5000);
-
+        dots.forEach((dot, index) => {
+          dot.classList.toggle("on", index === current);
         });
 
-    </script>
+      }
+
+
+      slider.querySelector(".l").onclick = () => {
+        showBanner(current - 1);
+      };
+
+
+      slider.querySelector(".r").onclick = () => {
+        showBanner(current + 1);
+      };
+
+
+      dots.forEach((dot, index) => {
+        dot.onclick = () => {
+          showBanner(index);
+        };
+      });
+
+
+      showBanner(0);
+
+
+      setInterval(() => {
+        showBanner(current + 1);
+      }, 5000);
+
+    });
+
+  </script>
 
 </body>
 

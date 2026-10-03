@@ -510,7 +510,10 @@ select,
 }
 
 .gallery > img {
+    width: 100%;
+    height: auto;
     aspect-ratio: 4 / 5;
+    object-fit: cover;
     border-radius: 14px;
 }
 
@@ -522,7 +525,9 @@ select,
 
 .thumbs img {
     width: 70px;
+    height: 70px;
     aspect-ratio: 1;
+    object-fit: cover;
     border-radius: 8px;
     cursor: pointer;
 }

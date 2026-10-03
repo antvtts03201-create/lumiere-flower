@@ -1,9 +1,52 @@
-<!DOCTYPE html><html lang="vi"><head><title>Danh mục - Lumière Flower</title><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/responsive.css"></head><body><div id="hdr"></div>
-<div class="page-head"><h1>Tất cả sản phẩm</h1><div class="crumb">Trang chủ / Danh mục / Tất cả sản phẩm</div></div>
-<div class="wrap layout"><aside id="side"><h4 style="margin-top:0">Tìm kiếm</h4><input type="text" id="search" placeholder="Nhập tên hoa...">
-<h4>Danh mục</h4><label><input type="checkbox" id="allCats"> Tất cả</label><div id="catBox"></div><h4>Màu sắc</h4><div id="colorBox"></div>
-<h4>Khoảng giá</h4><input type="number" id="from" placeholder="Từ" style="margin-bottom:6px"><input type="number" id="to" placeholder="Đến"><br><br><button class="btn" id="applyPrice" style="width:100%">Áp dụng</button>
-<h4>Loại hoa</h4><div id="typeBox"></div></aside>
-<main><div class="toolbar"><button class="btn ghost sm" id="filterBtn" onclick="document.getElementById('side').classList.toggle('open')">☰ Bộ lọc</button>
-<select id="sort"><option value="popular">Phổ biến</option><option value="newest">Mới nhất</option><option value="asc">Giá thấp → cao</option><option value="desc">Giá cao → thấp</option><option value="name">Tên A → Z</option></select></div>
-<div class="grid" id="grid"></div><div class="pager" id="pager"></div></main></div><div id="ftr"></div><script src="js/data.js"></script><script src="js/main.js"></script><script src="js/products.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <title>Danh mục - Lumière Flower</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <div id="hdr"></div>
+    <div class="page-head">
+        <h1>Tất cả sản phẩm</h1>
+        <div class="crumb">Trang chủ / Danh mục / Tất cả sản phẩm</div>
+    </div>
+    <div class="wrap layout">
+        <aside id="side">
+            <h4 style="margin-top:0">Tìm kiếm</h4><input type="text" id="search" placeholder="Nhập tên hoa...">
+            <h4>Danh mục</h4><label><input type="checkbox" id="allCats"> Tất cả</label>
+            <div id="catBox"></div>
+            <h4>Màu sắc</h4>
+            <div id="colorBox"></div>
+            <h4>Khoảng giá</h4><input type="number" id="from" placeholder="Từ" style="margin-bottom:6px"><input
+                type="number" id="to" placeholder="Đến"><br><br><button class="btn" id="applyPrice"
+                style="width:100%">Áp dụng</button>
+            <h4>Loại hoa</h4>
+            <div id="typeBox"></div>
+        </aside>
+        <main>
+            <div class="toolbar"><button class="btn ghost sm" id="filterBtn"
+                    onclick="document.getElementById('side').classList.toggle('open')">☰ Bộ lọc</button>
+                <select id="sort">
+                    <option value="popular">Phổ biến</option>
+                    <option value="newest">Mới nhất</option>
+                    <option value="asc">Giá thấp → cao</option>
+                    <option value="desc">Giá cao → thấp</option>
+                    <option value="name">Tên A → Z</option>
+                </select>
+            </div>
+            <div class="grid" id="grid"></div>
+            <div class="pager" id="pager"></div>
+        </main>
+    </div>
+    <div id="ftr"></div>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+</body>
+
+</html>

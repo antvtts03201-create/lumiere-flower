@@ -9,8 +9,10 @@ function applyFilters() {
     (!state.color || p.color === state.color) &&
     p.price >= state.min && p.price <= state.max &&
     (!state.types.length || state.types.includes(MAIN_TYPES.includes(p.flowerType) ? p.flowerType : "Khác")));
-  const sorts = { popular: (a, b) => b.rating - a.rating, newest: (a, b) => b.id - a.id,
-    asc: (a, b) => a.price - b.price, desc: (a, b) => b.price - a.price, name: (a, b) => a.name.localeCompare(b.name) };
+  const sorts = {
+    popular: (a, b) => b.rating - a.rating, newest: (a, b) => b.id - a.id,
+    asc: (a, b) => a.price - b.price, desc: (a, b) => b.price - a.price, name: (a, b) => a.name.localeCompare(b.name)
+  };
   return list.sort(sorts[state.sort]);
 }
 function render() {
@@ -28,13 +30,15 @@ function setup() {
   document.getElementById("colorBox").innerHTML = Object.entries(COLORS).map(([n, c]) =>
     `<button class="dot" title="${n}" style="background:${c}" onclick="state.color=state.color==='${n}'?'':'${n}';document.querySelectorAll('.dot').forEach(d=>d.classList.toggle('on',d.title===state.color));state.page=1;render()"></button>`).join("");
   document.querySelectorAll("input[data-k]").forEach(i => i.onchange = () => {
-    const arr = state[i.dataset.k]; i.checked ? arr.push(i.value) : arr.splice(arr.indexOf(i.value), 1); state.page = 1; render(); });
+    const arr = state[i.dataset.k]; i.checked ? arr.push(i.value) : arr.splice(arr.indexOf(i.value), 1); state.page = 1; render();
+  });
   const s = document.getElementById("search"); s.oninput = () => { state.q = s.value; state.page = 1; render(); };
   if (params.get("focus")) s.focus();
   document.getElementById("sort").onchange = e => { state.sort = e.target.value; render(); };
   document.getElementById("applyPrice").onclick = () => {
     state.min = Number(document.getElementById("from").value) || 0;
-    state.max = Number(document.getElementById("to").value) || Infinity; state.page = 1; render(); };
+    state.max = Number(document.getElementById("to").value) || Infinity; state.page = 1; render();
+  };
   document.getElementById("allCats").onclick = () => { state.cats = []; document.querySelectorAll("[data-k=cats]").forEach(i => i.checked = false); render(); };
   render();
 }
