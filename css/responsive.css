@@ -79,3 +79,4 @@
         grid-template-columns: 1fr;
     }
 }
+.burger{display:inline-flex}

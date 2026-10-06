@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("wish").onclick = function () {
     toggleWish(p.id);
   };
+  <button class="btn ghost" id="wish">${icon("heart")} Yêu thích</button>
 
   // 7. Chuyển tab Mô tả / Đánh giá / Chính sách
   const tabs = document.querySelectorAll(".tab");

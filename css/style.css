@@ -3,8 +3,8 @@
    (Responsive nằm ở file responsive.css)
    ===================================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 /* ---------- 1. MÀU SẮC DÙNG CHUNG ---------- */
-
 :root {
     --cream: #fbf5f1;
     --blush: #f8e4e4;
@@ -20,14 +20,15 @@
     margin: 0;
 }
 
-/* Font có chân, hiển thị đúng tiếng Việt, có sẵn trên Windows và Mac */
 body {
-    font-family: "Times New Roman", Times, serif;
-    font-size: 17px;
-    line-height: 1.5;
+    font-family: 'Raleway', serif;
+    font-size: 16px;
+    line-height: 1.6;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
 }
 
-/* Nút, ô nhập, ô chọn dùng cùng font với trang */
 button,
 input,
 select,
@@ -51,8 +52,29 @@ img {
     padding: 0 20px;
 }
 
+h1,
+h2,
+h3 {
+    font-weight: 600;
+}
+
 h2 {
     margin: 40px 0 18px;
+}
+
+/* Tiêu đề section căn giữa, có gạch hồng */
+.sec {
+    text-align: center;
+    font-size: 30px;
+}
+
+.sec::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 2px;
+    background: var(--rose);
+    margin: 10px auto 0;
 }
 
 /* ---------- 3. HEADER ---------- */
@@ -68,19 +90,17 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 70px;
+    height: 90px;
 }
 
 .logo {
-    font-size: 22px;
-    letter-spacing: 2px;
-    line-height: 1;
+    display: flex;
+    align-items: center;
 }
 
-.logo small {
-    display: block;
-    font-size: 11px;
-    color: var(--rose);
+.logo img {
+    height: 80px;
+    width: auto;
 }
 
 .menu {
@@ -95,15 +115,24 @@ h2 {
 
 .icons {
     display: flex;
+    align-items: center;
     gap: 16px;
-    font-size: 18px;
+}
+
+.icons a {
+    display: flex;
+    color: var(--ink);
+    transition: color 0.2s;
+}
+
+.icons a:hover {
+    color: var(--rose);
 }
 
 .cartlink {
     position: relative;
 }
 
-/* Số lượng nhỏ trên icon giỏ hàng */
 #badge {
     position: absolute;
     top: -8px;
@@ -118,12 +147,25 @@ h2 {
     line-height: 16px;
 }
 
-/* Nút hamburger: ẩn trên desktop, hiện ở responsive.css */
+/* Nút 3 gạch: ẩn trên desktop, hiện ở responsive.css */
 .burger {
     display: none;
+    align-items: center;
     background: none;
     border: 0;
-    font-size: 22px;
+    color: var(--ink);
+    cursor: pointer;
+}
+/* Icon vẽ nét dùng chung */
+.ic {
+    width: 20px;
+    height: 20px;
+    vertical-align: -4px;
+}
+
+.icons .ic {
+    width: 22px;
+    height: 22px;
 }
 
 /* ---------- 4. NÚT BẤM ---------- */
@@ -151,10 +193,10 @@ h2 {
 
 .btn.sm {
     padding: 7px 12px;
-    font-size: 13px;
+    font-size: 14px;
 }
-/* ---------- 5. SLIDER TRANG CHỦ ---------- */
 
+/* ---------- 5. BANNER TRANG CHỦ ---------- */
 .slider {
     position: relative;
     width: 100%;
@@ -162,45 +204,15 @@ h2 {
     background: var(--blush);
 }
 
-.slide {
-    display: none;
-    position: relative;
-    width: 100%;
-    min-height: 500px;
-}
-
-.slide.on {
+.banner {
     display: block;
-    animation: fade 0.5s;
 }
 
-.slide-content {
-    display: none;
-}
-
-.slide .art {
+.banner img {
     width: 100%;
-    height: 500px;
-}
-
-.slide .art img {
-    width: 100%;
-    height: 100%;
+    height: auto;
     display: block;
-    object-fit: cover;
 }
-
-@keyframes fade {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-/* Nút chuyển banner */
 
 .arrow {
     position: absolute;
@@ -229,8 +241,6 @@ h2 {
     right: 20px;
 }
 
-/* Dấu chấm */
-
 .dots {
     position: absolute;
     bottom: 18px;
@@ -254,35 +264,52 @@ h2 {
     background: var(--rose);
 }
 
-/* ---------- 6. DANH MỤC HÌNH TRÒN ---------- */
+/* ---------- 6. DANH MỤC HOA ---------- */
 .cats {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
     gap: 16px;
     margin-top: 30px;
 }
 
 .cat {
-    text-align: center;
-    font-size: 14px;
-}
-
-.cat span {
     display: block;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: var(--blush);
-    font-size: 38px;
-    line-height: 80px;
-    margin: 0 auto 8px;
-    transition: 0.2s;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    padding-bottom: 12px;
+    box-shadow: 0 2px 10px #0001;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.cat:hover span {
-    transform: scale(1.1);
-    background: #f3cfd4;
+.cat:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 24px #0002;
+}
+
+.cat .cat-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    margin: 0 0 10px;
+    overflow: hidden;
+    background: var(--blush);
+    line-height: 0;
+}
+
+.cat .cat-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.15);
+    transition: transform 0.5s;
+}
+
+.cat:hover .cat-img img {
+    transform: scale(1.25);
 }
 
 /* ---------- 7. LƯỚI SẢN PHẨM & THẺ SẢN PHẨM ---------- */
@@ -305,7 +332,6 @@ h2 {
     transform: translateY(-3px);
 }
 
-/* Khung ảnh tỉ lệ 4:5, ảnh luôn phủ kín khung */
 .im {
     display: block;
     overflow: hidden;
@@ -314,8 +340,7 @@ h2 {
     position: relative;
 }
 
-.im img,
-.gallery img {
+.im img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -326,7 +351,6 @@ h2 {
     transform: scale(1.06);
 }
 
-/* Nhãn "Mới" */
 .nw {
     position: absolute;
     top: 8px;
@@ -338,7 +362,7 @@ h2 {
     border-radius: 10px;
 }
 
-/* Nút trái tim yêu thích */
+/* Nút tim yêu thích */
 .heart {
     position: absolute;
     top: 16px;
@@ -350,20 +374,44 @@ h2 {
     height: 30px;
     color: #bbb;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heart .ic {
+    width: 16px;
+    height: 16px;
 }
 
 .heart.on {
     color: var(--rose);
 }
 
+.heart.on .ic {
+    fill: currentColor;
+}
+
 .card h3 {
-    font-size: 15px;
+    font-size: 17px;
     margin: 10px 0 2px;
+}
+
+/* Sao + lượt bán */
+.meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .stars {
     color: #f0b429;
     font-size: 13px;
+}
+
+.sold {
+    font-size: 13px;
+    color: #888;
 }
 
 .pr {
@@ -379,7 +427,64 @@ h2 {
     flex-wrap: wrap;
 }
 
-/* ---------- 8. GIỚI THIỆU THƯƠNG HIỆU ---------- */
+/* ---------- 8. CHỌN HOA THEO SỰ KIỆN ---------- */
+.events {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.ev {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 1px solid var(--rose);
+    border-radius: 30px;
+    background: #fff;
+    color: var(--rose);
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.ev .ic {
+    width: 18px;
+    height: 18px;
+}
+
+.ev:hover {
+    background: #fbeff1;
+}
+
+.ev.on {
+    background: var(--rose);
+    color: #fff;
+    box-shadow: 0 4px 12px #d4607a55;
+}
+
+.evmore {
+    text-align: center;
+    margin-top: 22px;
+}
+
+.evmore a {
+    display: inline-block;
+    padding: 9px 22px;
+    border: 1px solid var(--rose);
+    border-radius: 30px;
+    color: var(--rose);
+    transition: 0.25s;
+}
+
+.evmore a:hover {
+    background: var(--rose);
+    color: #fff;
+}
+
+/* ---------- 9. GIỚI THIỆU THƯƠNG HIỆU ---------- */
 .about {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -390,17 +495,22 @@ h2 {
 }
 
 .about .pic {
-    font-size: 120px;
-    text-align: center;
-    background: #f5d3d8;
-    padding: 40px;
+    padding: 0;
+    min-height: 260px;
+    align-self: stretch;
+}
+
+.about .pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .about div:last-child {
     padding: 30px;
 }
 
-/* ---------- 9. TRANG DANH MỤC (SIDEBAR + LỌC) ---------- */
+/* ---------- 10. TRANG DANH MỤC (SIDEBAR + LỌC) ---------- */
 .page-head {
     background: var(--blush);
     padding: 30px 0;
@@ -408,7 +518,7 @@ h2 {
 }
 
 .crumb {
-    font-size: 13px;
+    font-size: 14px;
     color: #777;
 }
 
@@ -436,7 +546,6 @@ aside label {
     margin: 5px 0;
 }
 
-/* Ô nhập liệu dùng chung */
 aside input[type=text],
 aside input[type=number],
 select,
@@ -448,7 +557,6 @@ select,
     font: inherit;
 }
 
-/* Nút chọn màu */
 .dot {
     width: 24px;
     height: 24px;
@@ -474,12 +582,11 @@ select,
     width: auto;
 }
 
-/* Nút "Bộ lọc": ẩn trên desktop, hiện trên mobile */
 #filterBtn {
     display: none;
 }
 
-/* ---------- 10. PHÂN TRANG ---------- */
+/* ---------- 11. PHÂN TRANG ---------- */
 .pager {
     text-align: center;
     margin: 26px 0;
@@ -501,7 +608,7 @@ select,
     border-color: var(--rose);
 }
 
-/* ---------- 11. TRANG CHI TIẾT SẢN PHẨM ---------- */
+/* ---------- 12. TRANG CHI TIẾT SẢN PHẨM ---------- */
 .detail {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -526,7 +633,6 @@ select,
 .thumbs img {
     width: 70px;
     height: 70px;
-    aspect-ratio: 1;
     object-fit: cover;
     border-radius: 8px;
     cursor: pointer;
@@ -541,7 +647,6 @@ select,
     font-size: 14px;
 }
 
-/* Ô chọn số lượng [-] 1 [+] */
 .qty {
     display: inline-flex;
     align-items: center;
@@ -563,7 +668,6 @@ select,
     text-align: center;
 }
 
-/* Tab Mô tả / Đánh giá / Chính sách */
 .tabs {
     display: flex;
     gap: 24px;
@@ -592,7 +696,6 @@ select,
     display: block;
 }
 
-/* 3 ô thông tin dịch vụ */
 .svc {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -604,8 +707,7 @@ select,
     margin: 20px 0;
 }
 
-/* ---------- 12. GIỎ HÀNG & THANH TOÁN ---------- */
-/* Mỗi dòng sản phẩm trong giỏ */
+/* ---------- 13. GIỎ HÀNG & THANH TOÁN ---------- */
 .crow {
     display: grid;
     grid-template-columns: 70px 2fr 1fr 1.2fr 1fr 40px;
@@ -625,10 +727,16 @@ select,
 }
 
 .del {
+    display: inline-flex;
+    align-items: center;
     border: 0;
     background: none;
+    color: var(--ink);
     cursor: pointer;
-    font-size: 18px;
+}
+
+.del:hover {
+    color: var(--rose);
 }
 
 .box {
@@ -656,7 +764,7 @@ form .fld {
     margin-bottom: 12px;
 }
 
-/* ---------- 13. ĐĂNG NHẬP / ĐĂNG KÝ ---------- */
+/* ---------- 14. ĐĂNG NHẬP / ĐĂNG KÝ ---------- */
 .authbox {
     max-width: 400px;
     margin: 50px auto;
@@ -669,31 +777,51 @@ form .fld {
     margin-bottom: 18px;
 }
 
-/* ---------- 14. FOOTER ---------- */
+/* ---------- 15. FOOTER (có màu) ---------- */
 footer {
-    background: #fff;
+    background: linear-gradient(135deg, #d4607a, #c98a94);
+    color: #fff;
     margin-top: 50px;
-    padding: 30px 0 10px;
+    padding: 40px 0 14px;
     font-size: 14px;
+}
+
+footer .logo img {
+    height: 70px;
+    filter: brightness(0) invert(1); /* logo trắng cho nổi trên nền hồng */
 }
 
 .fgrid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 24px;
 }
 
 .fgrid h4 {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+footer .ic {
+    width: 16px;
+    height: 16px;
+    vertical-align: -3px;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
 
 .copy {
     text-align: center;
-    margin-top: 20px;
-    color: #999;
+    margin-top: 24px;
+    padding-top: 14px;
+    border-top: 1px solid #ffffff55;
+    color: #ffffffcc;
 }
 
-/* ---------- 15. THÔNG BÁO (TOAST) & MODAL ---------- */
+/* ---------- 16. THÔNG BÁO (TOAST) & MODAL ---------- */
 .toast {
     position: fixed;
     bottom: 24px;
@@ -704,6 +832,11 @@ footer {
     border-radius: 10px;
     z-index: 200;
     animation: fade 0.3s;
+}
+
+@keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .modal {

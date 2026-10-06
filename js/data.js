@@ -4,8 +4,7 @@ const CATEGORIES = ["Hoa tình yêu", "Hoa sinh nhật", "Hoa cưới", "Hoa ch�
 const COLORS = { "Đỏ": "#c0392b", "Hồng": "#f06292", "Trắng": "#eee", "Vàng": "#f4c20d", "Cam": "#f39c4a", "Tím": "#8e6bbf" };
 const MAIN_TYPES = ["Hoa hồng", "Hoa hướng dương", "Hoa ly", "Hoa cẩm tú cầu", "Baby"];
 
-// Tạo ảnh tạm: một hình vuông màu nền và một emoji ở giữa.
-// Khi có ảnh thật, thay bằng đường dẫn, ví dụ "images/hoa1.jpg"
+// Tạo ảnh tạm: một hình vuông màu nền và một emoji ở giữa (hiện không còn dùng, giữ để dự phòng)
 function pic(bgColor, emoji) {
     const svg = "<svg xmlns='http://www.w3.org/2000/svg' width='400' height='500'>" +
         "<rect width='400' height='500' fill='" + bgColor + "'/>" +
@@ -29,6 +28,20 @@ const ROWS = [
     ["Spring Garden", 620000, "Hoa theo mùa", "Khác", "Cam", "#fbd9bd", "💐"]
 ];
 
+// Lượt bán của từng sản phẩm (theo thứ tự trong ROWS)
+const SOLD = [120, 86, 150, 64, 45, 98, 132, 71, 160, 58, 93, 77];
+
+// Ảnh hoa thật theo danh mục (đặt trong assets/images/)
+const CATEGORY_IMAGES = {
+    "Hoa tình yêu": "assets/images/hoa-tinh-yeu.jpg",
+    "Hoa sinh nhật": "assets/images/hoa-sinh-nhat.jpg",
+    "Hoa cưới": "assets/images/hoa-cuoi.jpg",
+    "Hoa chúc mừng": "assets/images/hoa-chuc-mung.jpg",
+    "Hoa dịp đặc biệt": "assets/images/hoa-dip-dac-biet.jpg",
+    "Hoa theo mùa": "assets/images/hoa-theo-mua.jpg"
+};
+const ALL_IMAGES = Object.values(CATEGORY_IMAGES);
+
 // Biến mỗi dòng của ROWS thành một sản phẩm (object)
 const SEED_PRODUCTS = [];
 for (let i = 0; i < ROWS.length; i++) {
@@ -40,8 +53,6 @@ for (let i = 0; i < ROWS.length; i++) {
     const category = row[2];
     const flowerType = row[3];
     const color = row[4];
-    const bgColor = row[5];
-    const emoji = row[6];
 
     // Đánh giá: sản phẩm số lẻ 4.5 sao, số chẵn 5 sao
     let rating = 5;
@@ -61,6 +72,11 @@ for (let i = 0; i < ROWS.length; i++) {
         isFeatured = true;
     }
 
+    // Ảnh chính theo danh mục; 2 ảnh phụ lấy xoay vòng từ các ảnh còn lại
+    const mainImage = CATEGORY_IMAGES[category];
+    const extra1 = ALL_IMAGES[(i + 1) % ALL_IMAGES.length];
+    const extra2 = ALL_IMAGES[(i + 3) % ALL_IMAGES.length];
+
     const product = {
         id: i + 1,
         name: name,
@@ -69,10 +85,11 @@ for (let i = 0; i < ROWS.length; i++) {
         flowerType: flowerType,
         color: color,
         description: name + " là bó hoa " + flowerType.toLowerCase() + " tông " + color.toLowerCase() + ", được cắm thủ công bởi florist của Lumière Flower.",
-        image: pic(bgColor, emoji),
-        images: [pic(bgColor, emoji), pic(bgColor, "🌿"), pic(bgColor, "🎀")],
+        image: mainImage,
+        images: [mainImage, extra1, extra2],
         rating: rating,
         stock: 20,
+        sold: SOLD[i],
         isNew: isNew,
         isFeatured: isFeatured,
         status: "active"
@@ -81,6 +98,7 @@ for (let i = 0; i < ROWS.length; i++) {
 }
 
 // ----- Hàm lưu trữ localStorage -----
+
 // Đọc dữ liệu từ localStorage. Nếu chưa có hoặc dữ liệu bị lỗi thì trả về giá trị mặc định.
 function load(key, defaultValue) {
     const text = localStorage.getItem(key);
@@ -94,6 +112,7 @@ function load(key, defaultValue) {
         return defaultValue;
     }
 }
+
 // Lưu dữ liệu vào localStorage (chuyển thành chuỗi bằng JSON.stringify)
 function save(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
