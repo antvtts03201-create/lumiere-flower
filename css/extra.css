@@ -1,0 +1,61 @@
+.icons button { display: flex; background: none; border: 0; color: var(--ink); cursor: pointer; padding: 0; transition: color .2s; }
+.icons button:hover { color: var(--rose); }
+.btn[disabled] { opacity: .45; cursor: not-allowed; }
+.crow .qty { margin: 0; }
+.modal .btn { margin: 0 4px; }
+
+/* Trạng thái đơn hàng */
+.st { display: inline-block; padding: 3px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; background: #eee; }
+.st.wait, .stsel.wait { background: #fff3cd; color: #8a6d00; }
+.st.ship, .stsel.ship { background: #dbeafe; color: #1e56a0; }
+.st.done, .stsel.done { background: #d9f2e3; color: #1c7a44; }
+.st.cancel, .stsel.cancel { background: #fde2e4; color: #b3263a; }
+
+/* Lịch sử đơn hàng */
+.ocard { background: #fff; border-radius: 14px; padding: 16px 20px; margin-bottom: 16px; }
+.ohead { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid #f0e4e4; }
+.oitem { display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px dashed #f0e4e4; }
+.oitem img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; }
+.ofoot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 12px; font-size: 14px; text-align: left; }
+.ofoot > div { text-align: right; }
+
+/* Trang quản trị */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+.stats div { background: #fff; border-radius: 14px; padding: 18px; text-align: center; }
+.stats b { display: block; font-size: 24px; color: var(--rose); }
+.stats span { font-size: 13px; color: #777; }
+.atabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.atab { padding: 10px 22px; border: 1px solid var(--rose); background: #fff; color: var(--rose); border-radius: 30px; cursor: pointer; }
+.atab.on { background: var(--rose); color: #fff; }
+.apanel { background: #fff; border-radius: 14px; padding: 20px; margin-bottom: 20px; }
+.apanel h3 { margin-bottom: 14px; }
+.aform { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.aform .full { grid-column: 1 / -1; }
+.aform .fld { margin-bottom: 0; }
+.aform label { font-size: 14px; }
+.arow { display: flex; gap: 10px; }
+.tscroll { overflow-x: auto; }
+.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tbl th, .tbl td { padding: 10px 8px; border-bottom: 1px solid #f0e4e4; text-align: left; vertical-align: middle; }
+.tbl th { background: var(--blush); white-space: nowrap; }
+.tbl .thumb { width: 48px; height: 48px; object-fit: cover; border-radius: 8px; }
+.tact { white-space: nowrap; }
+.tact .btn { margin-right: 4px; }
+.odetail td { background: #fbf5f1; line-height: 1.7; }
+.stsel { width: auto; border-radius: 20px; padding: 5px 10px; font-weight: 600; }
+.filterSel { width: auto; margin-bottom: 14px; }
+
+/* Header gọn, không cần nút 3 gạch */
+@media (max-width: 1199px) {
+  .menu { display: flex; position: static; flex-direction: row; padding: 0; gap: 20px; background: none; }
+}
+@media (max-width: 767px) {
+  .bar { height: auto; flex-wrap: wrap; padding: 8px 0; gap: 6px; }
+  .logo img { height: 56px; }
+  .menu { order: 3; width: 100%; justify-content: center; gap: 18px; font-size: 14px; }
+  .stats { grid-template-columns: 1fr; }
+  .aform { grid-template-columns: 1fr; }
+  .crow { grid-template-columns: 56px 1fr 1fr; }
+  .ev { padding: 8px 14px; font-size: 14px; }
+  .events { gap: 8px; }
+}

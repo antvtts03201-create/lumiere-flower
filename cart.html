@@ -9,15 +9,16 @@
   <!-- Font Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Be+Vietnam+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto Sans:ital,wght@0,400;0,500;1,400;1,500&family=Be+Vietnam+Pro:wght@400;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/extra.css">
 </head>
 
 <body>
 
-  <!-- Header (được vẽ bởi main.js) -->
+  <!-- Header (được vẽ bởi ui.js) -->
   <div id="hdr"></div>
 
   <div class="wrap">
@@ -35,7 +36,7 @@
 
         <div class="box">
           <input class="fld" id="coupon" placeholder="Mã giảm giá (LUMIERE10)">
-          <button class="btn sm" onclick="applyCoupon()">Áp dụng</button>
+          <button class="btn sm" id="applyCoupon">Áp dụng</button>
         </div>
 
         <a class="btn" href="checkout.html" style="width:100%; text-align:center">
@@ -50,14 +51,11 @@
     </div>
   </div>
 
-  <!-- Footer (được vẽ bởi main.js) -->
+  <!-- Footer (được vẽ bởi ui.js) -->
   <div id="ftr"></div>
 
-  <!-- Thứ tự nạp: data.js -> main.js -> cart.js (không đổi thứ tự) -->
-  <script src="js/data.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/cart.js"></script>
 
+  <script type="module" src="js/modules/pages/cart.js"></script>
 </body>
 
 </html>

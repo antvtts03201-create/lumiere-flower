@@ -9,6 +9,7 @@
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/extra.css">
 </head>
 
 <body>
@@ -60,137 +61,7 @@
 
   <div id="ftr"></div>
 
-  <script src="js/data.js"></script>
-  <script src="js/main.js"></script>
-
-  <script>
-
-    document.addEventListener("DOMContentLoaded", () => {
-
-      const P = getProducts();
-
-      /* ===== DANH MỤC ===== */
-      const slugs = [
-        "hoa-tinh-yeu",
-        "hoa-sinh-nhat",
-        "hoa-cuoi",
-        "hoa-chuc-mung",
-        "hoa-dip-dac-biet",
-        "hoa-theo-mua"
-      ];
-
-      document.getElementById("cats").innerHTML = CATEGORIES.map((c, i) =>
-        `
-        <a class="cat" href="products.html?cat=${encodeURIComponent(c)}">
-          <span class="cat-img">
-            <img src="assets/images/${slugs[i]}.jpg" alt="${c}" loading="lazy">
-          </span>
-          ${c}
-        </a>
-        `
-      ).join("");
-
-      /* ===== SẢN PHẨM ===== */
-      document.getElementById("featured").innerHTML =
-        P.filter(p => p.isFeatured).slice(0, 4).map(card).join("");
-
-      document.getElementById("newest").innerHTML =
-        P.filter(p => p.isNew).slice(0, 4).map(card).join("");
-
-      /* ===== CHỌN HOA THEO SỰ KIỆN ===== */
-      // [tên icon, tên hiển thị, danh mục]
-      const EVENTS = [
-        ["heart", "Valentine", "Hoa tình yêu"],
-        ["gift", "8/3 · 20/10", "Hoa chúc mừng"],
-        ["cake", "Sinh nhật", "Hoa sinh nhật"],
-        ["ring", "Cưới hỏi", "Hoa cưới"],
-        ["star", "Dịp đặc biệt", "Hoa dịp đặc biệt"],
-        ["leaf", "Theo mùa", "Hoa theo mùa"]
-      ];
-
-      const evTabs = document.getElementById("evTabs");
-
-      evTabs.innerHTML = EVENTS.map((e, i) =>
-        `<button class="ev" data-i="${i}">${icon(e[0])} ${e[1]}</button>`
-      ).join("");
-
-      function showEvent(n) {
-        const cat = EVENTS[n][2];
-
-        document.getElementById("evGrid").innerHTML =
-          P.filter(p => p.category === cat).slice(0, 4).map(card).join("");
-
-        const more = document.getElementById("evMore");
-        more.href = "products.html?cat=" + encodeURIComponent(cat);
-        more.textContent = "Xem tất cả " + cat.toLowerCase() + " →";
-
-        evTabs.querySelectorAll(".ev").forEach((b, i) => {
-          b.classList.toggle("on", i === n);
-        });
-      }
-
-      evTabs.onclick = e => {
-        const b = e.target.closest(".ev");
-        if (b) showEvent(Number(b.dataset.i));
-      };
-
-      showEvent(0);
-
-      /* ===== BANNER SLIDER (bấm vào banner để chuyển trang) ===== */
-      const banners = [
-        { image: "assets/images/lumiere_banner_1.png", link: "products.html?cat=" + encodeURIComponent("Hoa tình yêu") },
-        { image: "assets/images/lumiere_banner_2.png", link: "products.html" },
-        { image: "assets/images/lumiere_banner_3.png", link: "#events" }
-      ];
-
-      const slider = document.getElementById("slider");
-      let current = 0;
-
-      slider.innerHTML = `
-        <a class="banner" id="bannerLink" href="${banners[0].link}">
-          <img id="bannerImage" src="${banners[0].image}" alt="Lumière Flower">
-        </a>
-
-        <button class="arrow l">‹</button>
-        <button class="arrow r">›</button>
-
-        <div class="dots">
-          ${banners.map(() => "<i></i>").join("")}
-        </div>
-      `;
-
-      const bannerImage = document.getElementById("bannerImage");
-      const bannerLink = document.getElementById("bannerLink");
-      const dots = slider.querySelectorAll(".dots i");
-
-      function showBanner(number) {
-        current = (number + banners.length) % banners.length;
-
-        bannerImage.src = banners[current].image;
-        bannerLink.href = banners[current].link;
-
-        dots.forEach((dot, index) => {
-          dot.classList.toggle("on", index === current);
-        });
-      }
-
-      slider.querySelector(".l").onclick = () => showBanner(current - 1);
-      slider.querySelector(".r").onclick = () => showBanner(current + 1);
-
-      dots.forEach((dot, index) => {
-        dot.onclick = () => showBanner(index);
-      });
-
-      showBanner(0);
-
-      setInterval(() => {
-        showBanner(current + 1);
-      }, 5000);
-
-    });
-
-  </script>
-
+  <script type="module" src="js/modules/pages/home.js"></script>
 </body>
 
 </html>
